@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT template (#PCDATA)>
+<!ATTLIST template
+	name CDATA #REQUIRED
+	fileType (po|vo|dto|ui|api|apiImpl|service|serviceImpl|dao|project|other) #IMPLIED
+	filePath CDATA #REQUIRED
+	fileName CDATA #REQUIRED
+>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT rabbitGenConfig ((project, bizModels))>
+
+<!ELEMENT project (((projectName| description| groupId)+, artifactId, version,
+        projectLocation, templatePath, packageName, author, email, properties?))>
+<!ATTLIST project
+	generate (true|false) #REQUIRED
+    override (true|false) "false"
+>
+
+<!ELEMENT projectName (#PCDATA)>
+<!ELEMENT projectLocation (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT templatePath (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT email (#PCDATA)>
+<!ELEMENT groupId (#PCDATA)>
+<!ELEMENT artifactId (#PCDATA)>
+<!ELEMENT version (#PCDATA)>
+<!ELEMENT packageName (#PCDATA)>
+<!ELEMENT properties ((property*))>
+
+<!ELEMENT property EMPTY>
+<!ATTLIST property
+        name CDATA #REQUIRED
+        value CDATA #REQUIRED
+        >
+
+
+<!ELEMENT bizModels ((classPathEntry?, jdbcConnection?, tableDefault?, module*, table*))>
+<!ATTLIST bizModels
+	generate (true|false) #REQUIRED
+>
+<!ELEMENT classPathEntry EMPTY>
+<!ATTLIST classPathEntry
+	location CDATA ''
+>
+<!ELEMENT jdbcConnection ((property*))>
+<!ATTLIST jdbcConnection
+	driverClass CDATA ""
+	connectionURL CDATA ""
+	userId CDATA ""
+	password CDATA ""
+>
+
+<!ELEMENT module ((table+))>
+<!ATTLIST module
+	moduleName CDATA #REQUIRED
+>
+<!ELEMENT tableDefault ((modelType*, methodType*, method*))>
+<!ELEMENT table ((modelType*, methodType*, method*))>
+<!ATTLIST table
+	tableName CDATA #REQUIRED
+	domainClassName CDATA #IMPLIED
+	moduleName CDATA #IMPLIED
+>
+<!ELEMENT modelType EMPTY>
+<!ATTLIST modelType
+	type (po|dto|vo) #REQUIRED
+	generate (true|false) #REQUIRED
+>
+<!ELEMENT methodType EMPTY>
+<!ATTLIST methodType
+	type (api|service|dao) #REQUIRED 
+	generate (true|false) #REQUIRED
+	includeImpl (true|false) #REQUIRED
+>
+<!ELEMENT method EMPTY>
+<!ATTLIST method
+	type (add|update|delete|getAll|query|getById) #REQUIRED
+	generate (true|false) #REQUIRED
+>
